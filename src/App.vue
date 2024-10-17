@@ -2,7 +2,7 @@
 <template>
   <BaseLayout>
     <template #main>
-      <HomePage />
+      <HomePage :user="user" @user-signed-in="setUser"/>
     </template>
   </BaseLayout>
 </template>
@@ -18,6 +18,16 @@ export default {
   components: {
     BaseLayout, HomePage
   },
+  data() {
+    return {
+      user: null  // Stocke l'utilisateur ici
+    };
+  },
+  methods: {
+    setUser(user) {
+      this.user = user;  // Met à jour l'utilisateur avec les informations reçues
+    }
+  }
 }
 </script>
 

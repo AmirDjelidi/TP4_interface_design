@@ -1,5 +1,8 @@
 <template>
   <h1>Il n'y a pas de bonne ou de mauvaise Vue 😉</h1>
+  <div v-if="user">
+    <h1>Bienvenue, {{ user.name }} !</h1>
+  </div>
   <img src="../assets/otis.png" alt="otis" width="180px" height="180px" />
   <div class="center-container">
     <!-- Un bouton désactivable -->
@@ -15,7 +18,9 @@
       Cliquer pour ralentir ({{ clicks }} secondes d'attente) !
     </AsyncButton>
 
-    <BaseButton color="primary" @click="signInWithMicrosoft">Sign In with Microsoft</BaseButton>
+
+    <AsyncButton color="primary" @click="signInWithMicrosoft">Sign In with Microsoft</AsyncButton>
+
   </div>
 </template>
 
@@ -25,23 +30,26 @@ import AsyncButton from '@/components/AsyncButton.vue';
 import { signInAndGetUser } from '@/lib/microsoftGraph';
 export default {
   name: 'HomePage',
+  props: {
+    user: {
+      type: Object,
+      default: null
+    }
+  },
   components: { BaseButton, AsyncButton },
   data() {
     return {
       clicks: 1 // Initialise le compteur à 1
     };
   },
+
   methods: {
     increaseClicks() {
       this.clicks += 1; // Incrémente le compteur à chaque clic
     },
     async signInWithMicrosoft() {
-      const user = await signInAndGetUser(); // Appelle la fonction signInAndGetUser
-      if (user) {
-        alert(`Connexion réussie ! Bienvenue, ${user.name}`);
-      } else {
-        alert('Échec de la connexion');
-      }
+      const user = await signInAndGetUser();
+      this.$emit('user-signed-in', user);
     }
   }
 };
