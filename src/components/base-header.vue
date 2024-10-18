@@ -8,7 +8,7 @@ export default {
 <template>
   <nav>
     <router-link to="/">Accueil</router-link> |
-    <router-link to="/conversations">Conversations</router-link>
+    <router-link to="/conversations">Conversations </router-link>
   </nav>
 </template>
 
