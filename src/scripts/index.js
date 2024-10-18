@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '../pages/HomePage.vue';
 import ConversationsIndexPage from '../components/ConversationsIndexPage.vue';
+import ConversationShowPage from '../components/ConversationShowPage.vue';
 import store from '../scripts/store';
 
 const routes = [
@@ -17,8 +18,23 @@ const routes = [
 
             }
         }
+    },
+    {
+        path: '/conversations/:id',
+        component: ConversationShowPage,
+        props: true,
+        beforeEnter: (to, from, next) => {
+
+            if (!store.state.user) {
+
+                next('/');
+            } else {
+                next();
+            }
+        }
     }
 ];
+
 
 const index = createRouter({
     history: createWebHistory(),

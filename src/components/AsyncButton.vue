@@ -22,7 +22,7 @@ export default {
     },
     delay: {
       type: Number,
-      default: 1 // Délai par défaut de 1 seconde
+      default: 1
     }
   },
   data() {

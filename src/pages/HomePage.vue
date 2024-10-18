@@ -20,7 +20,7 @@
     </AsyncButton>
 
 
-    <AsyncButton color="primary" @click="signInWithMicrosoft">Sign In with Microsoft</AsyncButton>
+    <AsyncButton color="primary" :disabled="isLoggedIn" @click="signInWithMicrosoft">Sign In with Microsoft</AsyncButton>
 
   </div>
 </template>
@@ -36,6 +36,10 @@ export default {
     ...mapGetters(['getUser']),
     user() {
       return this.getUser;
+    },
+
+    isLoggedIn() {
+      return !!this.user;
     }
   },
   components: { BaseButton, AsyncButton },
