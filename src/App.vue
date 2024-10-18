@@ -2,25 +2,24 @@
 <template>
   <BaseLayout>
     <template #main>
-      <HomePage/>
+      <router-view />
     </template>
   </BaseLayout>
 </template>
 
 
 <script>
-import HomePage from './pages/HomePage.vue';
 import BaseLayout from "@/components/BaseLayout.vue";
 
 
 export default {
   name: 'App',
   components: {
-    BaseLayout, HomePage
+    BaseLayout
   },
   data() {
     return {
-      user: null  // Stocke l'utilisateur ici
+      user: null
     };
   }
 }

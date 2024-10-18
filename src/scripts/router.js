@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '../pages/HomePage.vue';
-import AboutPage from '../components/AboutPage.vue';
+import ConversationsIndexPage from '../components/ConversationsIndexPage.vue';  // Nouveau composant
 
 const routes = [
     { path: '/', component: HomePage },
-    { path: '/about', component: AboutPage }  // Exemple de route vers une page "About"
+    { path: '/conversations', component: ConversationsIndexPage }
 ];
 
 const router = createRouter({
